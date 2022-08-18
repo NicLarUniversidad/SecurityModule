@@ -8,6 +8,7 @@ import com.cl.evaluacion.register.models.RegisterUserModel;
 import com.cl.evaluacion.register.models.UserModel;
 import com.cl.evaluacion.register.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,15 +20,18 @@ public class RegisterService {
     private final ValidatorService validatorService;
     private final TimeService timeService;
     private final UserEntityToUserModelConverter userEntityToUserModelConverter;
+    private final PasswordEncoder passwordEncoder;
     @Autowired
     public RegisterService(UserRepository userRepository,
                            ValidatorService validatorService,
                            TimeService timeService,
-                           UserEntityToUserModelConverter userEntityToUserModelConverter) {
+                           UserEntityToUserModelConverter userEntityToUserModelConverter,
+                           PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.validatorService = validatorService;
         this.timeService = timeService;
         this.userEntityToUserModelConverter = userEntityToUserModelConverter;
+        this.passwordEncoder = passwordEncoder;
     }
     public UserModel registerUser(RegisterUserModel registerUserModel) throws InvalidFormatException, UserAlreadyExistsException {
         this.validatorService.validateEmail(registerUserModel.getEmail());
@@ -45,7 +49,7 @@ public class RegisterService {
 
     private UserEntity createNewUser(RegisterUserModel registerUserModel) {
         UserEntity newUser = new UserEntity();
-        newUser.setId(generateUuid());
+        newUser.setPassword(passwordEncoder.encode(registerUserModel.getPassword()));
         newUser.setCreated(timeService.getCurrentTime());
         newUser.setModified(timeService.getCurrentTime());
         newUser.setEmail(registerUserModel.getEmail());
