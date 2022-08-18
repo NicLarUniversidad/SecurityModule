@@ -15,6 +15,7 @@ public class UserEntityToUserModelConverter {
         userModel.setToken(userEntity.getToken());
         userModel.setModified(userEntity.getModified());
         userModel.setLastLogin(userEntity.getLastLogin());
+        userModel.setPhones(userEntity.getPhones());
         return userModel;
     }
 }
