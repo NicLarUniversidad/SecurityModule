@@ -31,6 +31,7 @@ public class RegisterService {
     }
     public UserModel registerUser(RegisterUserModel registerUserModel) throws InvalidFormatException, UserAlreadyExistsException {
         this.validatorService.validateEmail(registerUserModel.getEmail());
+        this.validatorService.validatePassword(registerUserModel.getPassword());
         UserEntity user = this.userRepository.findFirstByEmail(registerUserModel.getEmail());
         if (user==null) {
             user = createNewUser(registerUserModel);
