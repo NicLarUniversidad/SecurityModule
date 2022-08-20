@@ -2,6 +2,7 @@ package com.cl.evaluation.register.services;
 
 import com.cl.evaluation.register.converters.UserEntityToUserModelConverter;
 import com.cl.evaluation.register.entities.UserEntity;
+import com.cl.evaluation.register.expections.AuthenticationException;
 import com.cl.evaluation.register.models.LoginModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.repositories.UserRepository;
@@ -48,5 +49,13 @@ public class LoginService {
     private void verifyPassword(UserEntity user, LoginModel loginModel) throws LoginException {
         if (!passwordEncoder.matches(loginModel.getPassword(), user.getPassword()))
             throw new LoginException(LOGIN_FAILED);
+    }
+
+    public UserModel validateToken(String token) throws AuthenticationException {
+        var jws = tokenService.validateToken(token);
+        var user = userService.findByEmail(jws.getBody().getSubject());
+        if (user == null)
+            throw new AuthenticationException(AuthenticationException.USER_NOT_FOUND);
+        return converter.convert(user);
     }
 }

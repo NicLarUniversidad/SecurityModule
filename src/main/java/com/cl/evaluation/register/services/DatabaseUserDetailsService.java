@@ -1,3 +1,4 @@
+/*
 package com.cl.evaluation.register.services;
 
 import com.cl.evaluation.register.mappers.UserDetailsMapper;
@@ -28,3 +29,4 @@ public class DatabaseUserDetailsService implements UserDetailsService {
         return userDetailsMapper.toUserDetails(user);
     }
 }
+*/

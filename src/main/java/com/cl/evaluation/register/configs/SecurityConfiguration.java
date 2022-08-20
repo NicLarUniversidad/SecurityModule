@@ -16,19 +16,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
+    /*private final UserDetailsService userDetailsService;
 
     @Autowired
     public SecurityConfiguration(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    /*@Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
@@ -39,19 +39,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authProvider());
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        /*httpSecurity
+        httpSecurity
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/register", "/login", "/get-all", "/swagger-ui.html", "/v3/api-docs")
+                .antMatchers("/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();*/
+                .httpBasic();
     }
 }
