@@ -2,12 +2,13 @@
 
 ## Descripción
 
-API con la cual se puede registrar usuarios, en la que ellos pueden iniciar sesiones y verificar un token con el cual se verifica si una sesión determina está activa.
+API con la cual se puede registrar usuarios, en la que ellos pueden iniciar sesiones y verificar un token con el cual se verifica si una sesión determinada está activa.
 
 ## Requerimientos
 
-* Maven 18
-* JDK 18
+* Maven
+* JDK 17
+* Tener libre el puerto 12000
 
 ## Cómo ejecutarlo
 
@@ -21,17 +22,17 @@ java -jar .\target\SecurityApi-1.0-SNAPSHOT.jar
 Una vez corriendo la aplicación, se puede acceder a Swagger desde la url:
 
 ```
-http://localhost:8080/swagger-ui.html
+http://localhost:12000/swagger-ui.html
 ```
 
 ## Ejemplo
 
 Iniciar la aplicación.
-Ingresar a ```http://localhost:8080/swagger-ui.html``` o ingresar Postman.
+Ingresar a ```http://localhost:12000/swagger-ui.html``` o ingresar Postman.
 
 ### /register [POST]
 
-Para consumir endpoint ```http://localhost:8080/register```, hay que enviar una petición HTTP del tipo POST a dicha URL. Además  hay que agregar datos al body de la solicitud HTTP. Se agregan a continuación datos de prueba.
+Para consumir endpoint ```http://localhost:'12000/register```, hay que enviar una petición HTTP del tipo POST a dicha URL. Además  hay que agregar datos al body de la solicitud HTTP. Se agregan a continuación datos de prueba.
 
 ```json
 {
@@ -134,7 +135,7 @@ Al intentar registar un usuario con la contraseña ```"abc"```, se recibirá la 
 
 ### /login [POST]
 
-Una vez registrado un usuario, puede autenticarse. A través de una petición HTTP del tipo POST a la URL ```localhost:8080/login```. Agregando al body un JSON con los campos ```email``` y ```password```. Se agrega a continuación un body de ejemplo, que corresponde a los datos enviados al primer ejemplo.
+Una vez registrado un usuario, puede autenticarse. A través de una petición HTTP del tipo POST a la URL ```localhost:'12000/login```. Agregando al body un JSON con los campos ```email``` y ```password```. Se agrega a continuación un body de ejemplo, que corresponde a los datos enviados al primer ejemplo.
 
 ```json
 {
@@ -193,7 +194,7 @@ Si ocurre que, el usuario no existe, porque fue de dado de baja del sistema, mie
 
 #### /validate-session [POST]
 
-Una vez iniciada sesión, se podrá comprobar la validez del mismo. Para ello, se puede enviar un POST a la URL ```/localhost:8080/validate-session```. Dentro del body se debe mandar el token como texto plano.
+Una vez iniciada sesión, se podrá comprobar la validez del mismo. Para ello, se puede enviar un POST a la URL ```/localhost:'12000/validate-session```. Dentro del body se debe mandar el token como texto plano.
 //TODO: mandar el token en el header.
 
 Se agrega a continuación un ejemplo de datos enviados en el body.
