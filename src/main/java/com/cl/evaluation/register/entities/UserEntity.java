@@ -5,8 +5,6 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 

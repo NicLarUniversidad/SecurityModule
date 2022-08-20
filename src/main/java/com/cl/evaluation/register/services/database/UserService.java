@@ -1,11 +1,8 @@
 package com.cl.evaluation.register.services.database;
 
 import com.cl.evaluation.register.entities.UserEntity;
-import com.cl.evaluation.register.models.LoginModel;
-import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.repositories.UserRepository;
 import com.cl.evaluation.register.services.TimeService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

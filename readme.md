@@ -14,6 +14,6 @@ API con la cual se puede registrar usuarios, en la que ellos pueden iniciar sesi
 Se puede iniciar corriendo los siguientes comandos.
 
 ```
-mvn package -o 
-javac -
+mvn package
+java -jar .\target\SecurityApi-1.0-SNAPSHOT.jar
 ```

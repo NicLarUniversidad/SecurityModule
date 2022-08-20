@@ -1,34 +1,48 @@
 package com.cl.evaluation.register.services;
 
 import com.cl.evaluation.register.converters.UserEntityToUserModelConverter;
+import com.cl.evaluation.register.entities.UserEntity;
 import com.cl.evaluation.register.models.LoginModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.repositories.UserRepository;
 import com.cl.evaluation.register.services.database.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.security.auth.login.LoginException;
 
 @Service
 public class LoginService {
+    public static String LOGIN_FAILED = "Contraseña incorrecta";
 
     private final UserService userService;
     private final UserEntityToUserModelConverter converter;
     private final TokenService tokenService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
     public LoginService(UserService userService,
                         UserEntityToUserModelConverter converter,
-                        TokenService tokenService) {
+                        TokenService tokenService,
+                        PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.converter = converter;
         this.tokenService = tokenService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public UserModel login(LoginModel loginModel) {
+    public UserModel login(LoginModel loginModel) throws LoginException {
         var user = userService.findByEmail(loginModel.getEmail());
+        verifyPassword(user, loginModel);
         String token = tokenService.tokenize(loginModel.getEmail());
         userService.updateToken(user, token);
         return converter.convert(user);
+    }
+
+    private void verifyPassword(UserEntity user, LoginModel loginModel) throws LoginException {
+        if (!passwordEncoder.matches(loginModel.getPassword(), user.getPassword()))
+            throw new LoginException(LOGIN_FAILED);
     }
 }

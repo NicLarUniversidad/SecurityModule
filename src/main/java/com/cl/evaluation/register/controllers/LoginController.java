@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityNotFoundException;
+import javax.security.auth.login.LoginException;
 
 @RestController
 public class LoginController {
@@ -30,7 +31,7 @@ public class LoginController {
         try {
             var user = loginService.login(loginModel);
             response.setData(user);
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | LoginException e) {
             response.setError(e.getLocalizedMessage());
             statusCode = 400;
         }
