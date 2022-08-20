@@ -6,10 +6,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name = "UserEntity")
+@Entity(name = "user_entity")
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -29,6 +30,7 @@ public class UserEntity {
     private Date modified;
     @Column(name = "last_login")
     private Date lastLogin;
+    @Column(length = 512)
     private String token;
     @Column(name = "active")
     private boolean isActive;

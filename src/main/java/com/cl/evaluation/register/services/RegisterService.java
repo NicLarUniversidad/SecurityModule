@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -67,5 +69,9 @@ public class RegisterService {
     private String generateUuid() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
+    }
+
+    public Iterable<UserEntity> getAllUser() {
+        return this.userRepository.findAll();
     }
 }
