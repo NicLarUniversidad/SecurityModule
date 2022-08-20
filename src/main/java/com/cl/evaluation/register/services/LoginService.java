@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.security.auth.login.LoginException;
 
 @Service
 public class LoginService {
     public static String LOGIN_FAILED = "Contraseña incorrecta";
+    public static String USER_NOT_FOUND = "Usuario no registrado";
 
     private final UserService userService;
     private final UserEntityToUserModelConverter converter;
@@ -35,6 +37,8 @@ public class LoginService {
 
     public UserModel login(LoginModel loginModel) throws LoginException {
         var user = userService.findByEmail(loginModel.getEmail());
+        if (user == null)
+            throw new EntityNotFoundException(USER_NOT_FOUND);
         verifyPassword(user, loginModel);
         String token = tokenService.tokenize(loginModel.getEmail());
         userService.updateToken(user, token);

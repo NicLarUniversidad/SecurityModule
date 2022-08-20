@@ -10,7 +10,6 @@ import javax.persistence.EntityNotFoundException;
 
 @Service
 public class UserService extends AbmService<UserRepository, UserEntity> {
-    public static String USER_NOT_FOUND = "Usuario no registrado";
     private final TimeService timeService;
     @Autowired
     public UserService(TimeService timeService) {
@@ -24,8 +23,6 @@ public class UserService extends AbmService<UserRepository, UserEntity> {
 
     public UserEntity findByEmail(String email) {
         UserEntity user = repository.findFirstByEmail(email);
-        if (user == null)
-            throw new EntityNotFoundException(USER_NOT_FOUND);
         return user;
     }
 }

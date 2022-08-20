@@ -1,6 +1,8 @@
 package com.cl.evaluation.register.controllers;
 
 import com.cl.evaluation.register.entities.UserEntity;
+import com.cl.evaluation.register.expections.InvalidFormatException;
+import com.cl.evaluation.register.expections.UserAlreadyExistsException;
 import com.cl.evaluation.register.models.RegisterUserModel;
 import com.cl.evaluation.register.models.ResponseModel;
 import com.cl.evaluation.register.models.UserModel;
@@ -36,7 +38,7 @@ public class RegisterController {
         int status = 200;
         try {
             response.setData(registerService.registerUser(registerUserModel));
-        } catch (Exception e) {
+        } catch (InvalidFormatException | UserAlreadyExistsException e) {
             response.setError(e.getLocalizedMessage());
             status = 400;
         }
