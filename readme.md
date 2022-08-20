@@ -17,3 +17,9 @@ Se puede iniciar corriendo los siguientes comandos.
 mvn package
 java -jar .\target\SecurityApi-1.0-SNAPSHOT.jar
 ```
+
+Una vez corriendo la aplicación, se puede acceder a Swagger desde la url:
+
+```
+http://localhost:8080/swagger-ui.html
+```
