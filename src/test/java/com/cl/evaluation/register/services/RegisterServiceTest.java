@@ -49,7 +49,7 @@ public class RegisterServiceTest extends ApplicationTest {
         registerUserModel.setPhones(phones);
 
         userWithPhones = new UserEntity();
-        userWithPhones.setEmail(registerUserModel.getEmail());
+        userWithPhones.setEmail("nic.lar.universidad@gmail.com");
         userWithPhones.setName(registerUserModel.getName());
         userWithPhones.setPhones(registerUserModel.getPhones());
 
@@ -61,6 +61,8 @@ public class RegisterServiceTest extends ApplicationTest {
 
     @Test
     void registerUserWithoutPhonesTest() throws UserAlreadyExistsException, InvalidFormatException {
+        registerUserModel.setPhones(userWithoutPhones.getPhones());
+        registerUserModel.setEmail(userWithoutPhones.getEmail());
         var newUser = this.registerService.registerUser(registerUserModel);
         assertThat(newUser.getEmail(), equalTo(userWithoutPhones.getEmail()));
     }
@@ -68,6 +70,7 @@ public class RegisterServiceTest extends ApplicationTest {
     @Test
     void registerUserWithPhonesTest() throws UserAlreadyExistsException, InvalidFormatException {
         registerUserModel.setPhones(userWithPhones.getPhones());
+        registerUserModel.setEmail(userWithPhones.getEmail());
         var newUser = this.registerService.registerUser(registerUserModel);
         assertThat(newUser.getEmail(), equalTo(userWithPhones.getEmail()));
         assertThat(newUser.getPhones().get(1).getNumber(), equalTo(userWithPhones.getPhones().get(1).getNumber()));

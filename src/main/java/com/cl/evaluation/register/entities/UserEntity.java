@@ -19,7 +19,6 @@ public class UserEntity {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
-    @Pattern(regexp = ".*@.*\\..*", message = "Formato de mail inválido")
     private String email;
     private String name;
     private String password;
