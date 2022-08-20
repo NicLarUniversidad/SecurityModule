@@ -16,7 +16,7 @@ public class ValidatorService {
     public void validateEmail(String email) throws InvalidFormatException {
         if (isBlank(email))
             throw new InvalidFormatException(InvalidFormatException.VOID_MAIL);
-        String EMAIL_REGEX = "^[_A-Za-z\\d-]+(\\.[_A-Za-z\\d-]+)*@[A-Za-z\\d-]+(\\.[A-Za-z\\d]+)*(\\.[A-Za-z]{2,})$";
+        String EMAIL_REGEX = "[_A-Za-z\\d-]+(\\.[_A-Za-z\\d-]+)*@[A-Za-z\\d-]+(\\.[A-Za-z\\d]+)*(\\.[A-Za-z]{2,})$";
         var formatValid = Pattern.matches(EMAIL_REGEX, email);
         if (!formatValid)
             throw new InvalidFormatException(InvalidFormatException.INVALID_MAIL_FORMAT);

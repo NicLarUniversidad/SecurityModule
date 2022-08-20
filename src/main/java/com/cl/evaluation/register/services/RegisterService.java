@@ -59,7 +59,6 @@ public class RegisterService {
         newUser.setCreated(timeService.getCurrentTime());
         newUser.setModified(timeService.getCurrentTime());
         newUser.setEmail(registerUserModel.getEmail());
-        newUser.setToken(generateUuid());
         newUser.setActive(true);
         newUser.setPhones(registerUserModel.getPhones());
         return newUser;
