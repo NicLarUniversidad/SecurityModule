@@ -7,13 +7,13 @@ import com.cl.evaluation.register.models.ResponseModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.services.LoginService;
 import com.cl.evaluation.register.services.TokenService;
+import com.fasterxml.jackson.core.JsonParseException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.security.auth.login.LoginException;
@@ -44,14 +44,14 @@ public class LoginController {
         return ResponseEntity.status(statusCode).body(response);
     }
 
-    @PostMapping("/validate-session")
-    public ResponseEntity<ResponseModel<UserModel>> login(@RequestBody String bearer) {
+    @GetMapping("/validate-session")
+    public ResponseEntity<ResponseModel<UserModel>> login(@RequestHeader("Authorization") String bearer) {
         var response = new ResponseModel<UserModel>();
         int statusCode = 200;
         try {
             var user = loginService.validateToken(bearer);
             response.setData(user);
-        } catch (AuthenticationException e) {
+        } catch (AuthenticationException | JsonParseException | SignatureException e) {
             response.setError(e.getLocalizedMessage());
             statusCode = 400;
         }

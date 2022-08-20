@@ -7,6 +7,7 @@ import com.cl.evaluation.register.models.LoginModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.repositories.UserRepository;
 import com.cl.evaluation.register.services.database.UserService;
+import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class LoginService {
             throw new LoginException(LOGIN_FAILED);
     }
 
-    public UserModel validateToken(String token) throws AuthenticationException {
+    public UserModel validateToken(String token) throws AuthenticationException, JsonParseException {
         var jws = tokenService.validateToken(token);
         var user = userService.findByEmail(jws.getBody().getSubject());
         if (user == null)

@@ -199,11 +199,8 @@ Si ocurre que, el usuario no existe, porque fue de dado de baja del sistema, mie
 
 #### /validate-session [POST]
 
-Una vez iniciada sesión, se podrá comprobar la validez del mismo. Para ello, se puede enviar un POST a la URL ```/localhost:'12000/validate-session```. Dentro del body se debe mandar el token como texto plano.
-//TODO: mandar el token en el header.
-
-Se agrega a continuación un ejemplo de datos enviados en el body.
-
+Una vez iniciada sesión, se podrá comprobar la validez del mismo. Se debe agregar en el header ```Authorization``` el valor del token obtenido al consumir el endpoint ```/login```.
+Además, hay que agregar el sufijo ```Bearer```.
 ```
 Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoibmljLmxhci51bml2ZXJzaWRhZEBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjYxMDE2MDQ5LCJleHAiOjE2NjEwMTY2NDl9.PXnd4Rmq6gOO-t6UIJk-5BjwaFDssQJTW1ZEclTkB1WF94HcCaxVtlygYWtG85DmE4rtrUvAMRbhzq1pOtcODA
 ```
