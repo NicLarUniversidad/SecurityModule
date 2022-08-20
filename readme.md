@@ -10,6 +10,11 @@ API con la cual se puede registrar usuarios, en la que ellos pueden iniciar sesi
 * JDK 17
 * Tener libre el puerto 12000
 
+## Documentación
+
+Hay un diagrama de actividades en el siguiente [archivo pdf](/doc/RegisterEndpointActivityDiagram.pdf). Actualmente describe la interacción entre objetos al consumir el endpoint ```/register```.
+//TODO: Agregar los demás endpoints.
+
 ## Cómo ejecutarlo
 
 Se puede iniciar corriendo los siguientes comandos.
