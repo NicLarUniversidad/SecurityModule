@@ -19,13 +19,10 @@ import java.util.List;
 public class RegisterController {
 
     private final RegisterService registerService;
-    private final ExceptionHandlerService exceptionHandlerService;
 
     @Autowired
-    public RegisterController(RegisterService registerService,
-                              ExceptionHandlerService exceptionHandlerService) {
-        this.registerService = registerService;
-        this.exceptionHandlerService = exceptionHandlerService;
+    public RegisterController(RegisterService registerService) {
+        this.registerService = registerService;;
     }
 
     @GetMapping("/get-all")

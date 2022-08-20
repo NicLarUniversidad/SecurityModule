@@ -8,30 +8,29 @@ import com.cl.evaluation.register.models.RegisterUserModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.repositories.PhoneRepository;
 import com.cl.evaluation.register.repositories.UserRepository;
+import com.cl.evaluation.register.services.database.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.util.List;
 import java.util.UUID;
 
 @Service
 public class RegisterService {
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final ValidatorService validatorService;
     private final TimeService timeService;
     private final UserEntityToUserModelConverter userEntityToUserModelConverter;
     private final PasswordEncoder passwordEncoder;
     private final PhoneRepository phoneRepository;
     @Autowired
-    public RegisterService(UserRepository userRepository,
+    public RegisterService(UserService userService,
                            ValidatorService validatorService,
                            TimeService timeService,
                            UserEntityToUserModelConverter userEntityToUserModelConverter,
                            PasswordEncoder passwordEncoder,
                            PhoneRepository phoneRepository) {
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.validatorService = validatorService;
         this.timeService = timeService;
         this.userEntityToUserModelConverter = userEntityToUserModelConverter;
@@ -41,12 +40,12 @@ public class RegisterService {
     public UserModel registerUser(RegisterUserModel registerUserModel) throws InvalidFormatException, UserAlreadyExistsException {
         this.validatorService.validateEmail(registerUserModel.getEmail());
         this.validatorService.validatePassword(registerUserModel.getPassword());
-        UserEntity user = this.userRepository.findFirstByEmail(registerUserModel.getEmail());
+        UserEntity user = this.userService.findByEmail(registerUserModel.getEmail());
         if (user==null) {
             user = createNewUser(registerUserModel);
             if (registerUserModel.getPhones() != null)
                 phoneRepository.saveAll(registerUserModel.getPhones());
-            this.userRepository.save(user);
+            this.userService.save(user);
         } else {
             String msg = String.format("Ya hay un usuario registrado con el mail %s", registerUserModel.getEmail());
             throw new UserAlreadyExistsException(msg);
@@ -72,6 +71,6 @@ public class RegisterService {
     }
 
     public Iterable<UserEntity> getAllUser() {
-        return this.userRepository.findAll();
+        return this.userService.findAll();
     }
 }
