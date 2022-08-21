@@ -8,7 +8,7 @@ API con la cual se puede registrar usuarios, en la que ellos pueden iniciar sesi
 
 * Maven
 * Open JDK 17
-* Tener libre el puerto 12000
+* Tener libre el puerto 12000, o usar otro pasándolo por parámetro al iniciar la aplicación.
 
 ## Documentación
 
@@ -19,7 +19,8 @@ TODO: Agregar los demás endpoints.
 
 ## Cómo ejecutarlo
 
-Se puede iniciar corriendo los siguientes comandos.
+Una vez clonado, o descargado, el repositorio. Desde la carpeta raíz del proyecto.
+Se puede iniciar, corriendo los siguientes comandos.
 
 ```
 mvn package

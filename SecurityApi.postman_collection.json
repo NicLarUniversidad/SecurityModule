@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "90b4ddd4-7188-4a93-8f4a-6a6e4c57b379",
+		"name": "SecurityApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Nicolás Larena\",\r\n  \"email\": \"nicolarena@hotmail.com\",\r\n  \"password\": \"123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"123456\",\r\n      \"cityCode\": \"2324\",\r\n      \"countryCode\": \"54\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:12000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "12000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:12000/get-all",
+					"host": [
+						"localhost"
+					],
+					"port": "12000",
+					"path": [
+						"get-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"nicolarena@hotmail.com\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:12000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "12000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate session",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoibmljb2xhcmVuYUBob3RtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NjEwMTgzNjUsImV4cCI6MTY2MTAxODk2NX0.4fh7OJMDLhe_Iz-aMc9zclWv2Y0lvv8Il9CZy1LavrHGoM5QucUmIkyCUnOcNsB4oI0QCo_rUatS_TRHo3DxjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:12000/validate-session",
+					"host": [
+						"localhost"
+					],
+					"port": "12000",
+					"path": [
+						"validate-session"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
