@@ -21,7 +21,7 @@ public class ValidatorServiceTest extends ApplicationTest {
 
     @Test
     public void validatePasswordTest() {
-        String validPassword = "123456A@";
+        String validPassword = "123456";
         assertDoesNotThrow(() -> validatorService.validatePassword(validPassword));
     }
 
