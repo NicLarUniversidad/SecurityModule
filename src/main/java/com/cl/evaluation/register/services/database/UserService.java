@@ -22,7 +22,6 @@ public class UserService extends AbmService<UserRepository, UserEntity> {
     }
 
     public UserEntity findByEmail(String email) {
-        UserEntity user = repository.findFirstByEmail(email);
-        return user;
+        return repository.findFirstByEmail(email);
     }
 }

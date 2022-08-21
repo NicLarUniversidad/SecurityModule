@@ -7,13 +7,10 @@ import com.cl.evaluation.register.expections.UserAlreadyExistsException;
 import com.cl.evaluation.register.models.RegisterUserModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.repositories.PhoneRepository;
-import com.cl.evaluation.register.repositories.UserRepository;
 import com.cl.evaluation.register.services.database.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class RegisterService {
@@ -62,11 +59,6 @@ public class RegisterService {
         newUser.setActive(true);
         newUser.setPhones(registerUserModel.getPhones());
         return newUser;
-    }
-
-    private String generateUuid() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
     }
 
     public Iterable<UserEntity> getAllUser() {

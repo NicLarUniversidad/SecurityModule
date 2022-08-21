@@ -7,7 +7,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 

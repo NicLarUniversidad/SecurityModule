@@ -22,11 +22,6 @@ public class RegisterController {
         this.registerService = registerService;
     }
 
-    /*@GetMapping("/get-all")
-    public ResponseEntity<Iterable<UserEntity>> getAll() {
-        return ResponseEntity.status(200).body(this.registerService.getAllUser());
-    }*/
-
     @PostMapping("/register")
     public ResponseEntity<ResponseModel<UserModel>> register(@RequestBody RegisterUserModel registerUserModel) {
         ResponseModel<UserModel> response = new ResponseModel<>();

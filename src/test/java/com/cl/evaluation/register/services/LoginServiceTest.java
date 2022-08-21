@@ -16,7 +16,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class LoginServiceTest extends ApplicationTest {
+class LoginServiceTest extends ApplicationTest {
 
     private final LoginService loginService;
     private final RegisterService registerService;
@@ -49,13 +49,13 @@ public class LoginServiceTest extends ApplicationTest {
 
 
     @Test
-    public void loginTest() throws LoginException {
+    void loginTest() throws LoginException {
         var user = loginService.login(loginModel);
         assertThat(user.getToken(), notNullValue());
     }
 
     @Test
-    public void validateTokenTest() throws LoginException {
+    void validateTokenTest() throws LoginException {
         var user = loginService.login(loginModel);
         assertDoesNotThrow(() -> loginService.validateToken("Bearer " + user.getToken()));
     }

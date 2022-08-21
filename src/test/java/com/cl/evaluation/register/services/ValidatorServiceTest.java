@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ValidatorServiceTest extends ApplicationTest {
+class ValidatorServiceTest extends ApplicationTest {
 
     private final ValidatorService validatorService;
 
@@ -20,13 +20,13 @@ public class ValidatorServiceTest extends ApplicationTest {
     }
 
     @Test
-    public void validatePasswordTest() {
+    void validatePasswordTest() {
         String validPassword = "123456";
         assertDoesNotThrow(() -> validatorService.validatePassword(validPassword));
     }
 
     @Test
-    public void invalidPasswordTest() {
+    void invalidPasswordTest() {
         String invalidPasswordEmpty = "";
 
         InvalidFormatException exception = assertThrows(InvalidFormatException.class,
@@ -39,13 +39,13 @@ public class ValidatorServiceTest extends ApplicationTest {
     }
 
     @Test
-    public void validateEmailTest() {
+    void validateEmailTest() {
         String validEmail = "abc@example.com";
         assertDoesNotThrow(() -> validatorService.validateEmail(validEmail));
     }
 
     @Test
-    public void invalidEmailTest() {
+    void invalidEmailTest() {
         String invalidEmailEmpty = "";
 
         InvalidFormatException exception = assertThrows(InvalidFormatException.class,

@@ -10,7 +10,7 @@ import java.util.Date;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class TimeServiceTest extends ApplicationTest {
+class TimeServiceTest extends ApplicationTest {
 
     private final TimeService timeService;
 
@@ -20,13 +20,13 @@ public class TimeServiceTest extends ApplicationTest {
     }
 
     @Test
-    public void getCurrentTimeTest() {
+    void getCurrentTimeTest() {
         var date = timeService.getCurrentTime();
         assertThat(date, equalTo(new Date()));
     }
 
     @Test
-    public void toTimestampTest() {
+    void toTimestampTest() {
         var date = new Date(System.currentTimeMillis());
         var dateConverted = timeService.toTimestamp(date);
         var timestamp = new Timestamp(date.getTime());

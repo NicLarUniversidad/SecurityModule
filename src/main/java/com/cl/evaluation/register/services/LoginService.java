@@ -5,7 +5,6 @@ import com.cl.evaluation.register.entities.UserEntity;
 import com.cl.evaluation.register.expections.AuthenticationException;
 import com.cl.evaluation.register.models.LoginModel;
 import com.cl.evaluation.register.models.UserModel;
-import com.cl.evaluation.register.repositories.UserRepository;
 import com.cl.evaluation.register.services.database.UserService;
 import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,8 @@ import javax.security.auth.login.LoginException;
 
 @Service
 public class LoginService {
-    public static String LOGIN_FAILED = "Contraseña incorrecta";
-    public static String USER_NOT_FOUND = "Usuario no registrado";
+    public static final String LOGIN_FAILED = "Contraseña incorrecta";
+    public static final String USER_NOT_FOUND = "Usuario no registrado";
 
     private final UserService userService;
     private final UserEntityToUserModelConverter converter;
