@@ -17,7 +17,7 @@ public class UserService extends AbmService<UserRepository, UserEntity> {
     }
     public void updateToken(UserEntity user, String token) throws EntityNotFoundException {
         user.setToken(token);
-        user.setLastLogin(timeService.getCurrentTime());
+        user.setLastLogin(timeService.getCurrentTimestamp());
         repository.save(user);
     }
 

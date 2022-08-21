@@ -9,6 +9,7 @@ import com.cl.evaluation.register.services.LoginService;
 import com.cl.evaluation.register.services.TokenService;
 import com.fasterxml.jackson.core.JsonParseException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class LoginController {
         try {
             var user = loginService.validateToken(bearer);
             response.setData(user);
-        } catch (AuthenticationException | JsonParseException | SignatureException e) {
+        } catch (AuthenticationException | JsonParseException | SignatureException | ExpiredJwtException e) {
             response.setError(e.getLocalizedMessage());
             statusCode = 400;
         }

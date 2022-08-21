@@ -56,8 +56,8 @@ public class RegisterService {
     private UserEntity createNewUser(RegisterUserModel registerUserModel) {
         UserEntity newUser = new UserEntity();
         newUser.setPassword(passwordEncoder.encode(registerUserModel.getPassword()));
-        newUser.setCreated(timeService.getCurrentTime());
-        newUser.setModified(timeService.getCurrentTime());
+        newUser.setCreated(timeService.getCurrentTimestamp());
+        newUser.setModified(timeService.getCurrentTimestamp());
         newUser.setEmail(registerUserModel.getEmail());
         newUser.setActive(true);
         newUser.setPhones(registerUserModel.getPhones());
