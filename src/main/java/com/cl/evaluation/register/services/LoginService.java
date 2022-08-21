@@ -57,6 +57,9 @@ public class LoginService {
         var user = userService.findByEmail(jws.getBody().getSubject());
         if (user == null)
             throw new AuthenticationException(AuthenticationException.USER_NOT_FOUND);
+        String jwtToken = token.substring(7);
+        if (!user.getToken().equals(jwtToken))
+            throw new AuthenticationException(AuthenticationException.NEW_TOKEN_HAS_BEEN_GENERATED);
         return converter.convert(user);
     }
 }
