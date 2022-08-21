@@ -1,16 +1,12 @@
 package com.cl.evaluation.register.controllers;
 
 import com.cl.evaluation.register.expections.AuthenticationException;
-import com.cl.evaluation.register.models.ErrorModel;
 import com.cl.evaluation.register.models.LoginModel;
 import com.cl.evaluation.register.models.ResponseModel;
 import com.cl.evaluation.register.models.UserModel;
 import com.cl.evaluation.register.services.LoginService;
-import com.cl.evaluation.register.services.TokenService;
 import com.fasterxml.jackson.core.JsonParseException;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +18,10 @@ import javax.security.auth.login.LoginException;
 @RestController
 public class LoginController {
     private final LoginService loginService;
-    private final TokenService tokenService;
 
     @Autowired
-    public LoginController(LoginService loginService,
-                           TokenService tokenService) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
-        this.tokenService = tokenService;
     }
 
     @PostMapping("/login")

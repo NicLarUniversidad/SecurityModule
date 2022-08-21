@@ -1,21 +1,16 @@
 package com.cl.evaluation.register.controllers;
 
-import com.cl.evaluation.register.entities.UserEntity;
 import com.cl.evaluation.register.expections.InvalidFormatException;
 import com.cl.evaluation.register.expections.UserAlreadyExistsException;
 import com.cl.evaluation.register.models.RegisterUserModel;
 import com.cl.evaluation.register.models.ResponseModel;
 import com.cl.evaluation.register.models.UserModel;
-import com.cl.evaluation.register.services.ExceptionHandlerService;
 import com.cl.evaluation.register.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class RegisterController {
@@ -24,7 +19,7 @@ public class RegisterController {
 
     @Autowired
     public RegisterController(RegisterService registerService) {
-        this.registerService = registerService;;
+        this.registerService = registerService;
     }
 
     /*@GetMapping("/get-all")
