@@ -37,9 +37,3 @@ CREATE TABLE session (
        ACTIVE BIT NOT NULL,
        FOREIGN KEY (USER_ID) REFERENCES user_entity(ID)
 );
-
-//Password: 123
-INSERT INTO user_entity  (ID, EMAIL, NAME, PASSWORD, CREATED, MODIFIED, LAST_LOGIN, TOKEN, ACTIVE)
-    VALUES ( '123456', 'nic.lar.universidad@gmail.com', 'Esteban Nicolás Larena',
-            '$2a$10$/f0bwMoyv4VtpqGTPk7ALO4z4BAersmzMZ3G5nZfltF9geW07LFYS',
-            CURRENT_DATE(), CURRENT_DATE(), null, null, true)
